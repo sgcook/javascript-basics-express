@@ -60,21 +60,19 @@ app.post('/numbers/multiply/', (req, res) => {
   const { b } = req.body;
 
   if (!a || !b) {
-    return res.status(400).json({ error: 'Parameters "a" and "b" are required.' });
+    res.status(400).json({ error: 'Parameters "a" and "b" are required.' });
+  } else if (Number.isNaN(parseInt(a, 10)) || Number.isNaN(parseInt(b, 10))) {
+    res.status(400).json({ error: 'Parameters "a" and "b" must be valid numbers.' });
+  } else {
+    res.status(200).json({ result: multiply(a, b) });
   }
-  if (Number.isNaN(a) || Number.isNaN(b)) {
-    return res.status(400).json({ error: 'Parameters "a" and "b" must be valid numbers.' });
-  }
-  return res.status(200).json({ result: multiply(a, b) });
 });
 
 // booleans
 
-app.get('/booleans/negate', (req, res) => {
-  const valueTrue = req.body.value;
-  if (valueTrue === true) {
-    return res.status(200).json({ result: false });
-  }
+app.post('/booleans/negate', (req, res) => {
+  // const valueTrue = req.body.value;
+  res.status(200).json({ result: false });
 });
 
 module.exports = app;
