@@ -32,7 +32,9 @@ const addToArray2 = (element, array) => {
 
 const removeNthElement = (index, array) => {
   // your code here
-  array.splice(index, 1);
+  const arrayList = array;
+  arrayList.splice(index, 1);
+  return arrayList;
 };
 
 const numbersToStrings = numbers => {
@@ -63,7 +65,7 @@ const onlyEven = numbers => {
 const removeNthElement2 = (index, array) => {
   // your code here
   const newArray = array.slice(0, index);
-  const secondArray = array.slice(index + 1);
+  const secondArray = array.slice(index + 1, array.length - 1);
   return newArray.concat(secondArray);
 };
 
